@@ -5,7 +5,7 @@
         }
         <img (click)="takeCard()" class="top-card" style="translate: 15px -30px;" src="../../assets/img/card/card_cover_fire.png" alt="Card cover">
         @if (pickCardAnimation) {
-        <img (click)="takeCard()" class="pick-card-animation" [class.pick-card]="pickCardAnimation" style="translate: 15px -30px;" src="../../assets/img/spades/spades_1.png" alt="Card cover">
+        <img (click)="takeCard()" class="pick-card-animation" [class.pick-card]="pickCardAnimation" style="translate: 15px -30px;" src="../../assets/img/{{ currentCard }}.png" alt="Card cover">
         }
     </div>
 </div>
