@@ -43,6 +43,7 @@ a {
     border: 3px solid darkred;
     cursor: pointer;
     transition: all 150ms ease-in-out;
+    box-shadow: 2px 2px 0px 2px #111;
 
     &:hover {
         border-color: #000;
