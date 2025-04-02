@@ -1,6 +1,6 @@
 @if (game) {
 @for (player of game.players; track $index; let i = $index) {
-<app-player [style.transform]="'translateY(' + (64 + (128 * i)) + 'px)'" [name]="player" class="player-position" />
+<app-player [style.transform]="'translateY(' + (64 + (80 * i)) + 'px)'" [playerActive]="game.currentPlayer == i" [name]="player" class="player-position" />
 }
 }
 
@@ -15,6 +15,8 @@
         }
     </div>
 </div>
+
+<app-game-instructions class="pin-bottom" />
 
 <button mat-fab (click)="openDialog()" class="btn-add">
     <mat-icon>add</mat-icon>

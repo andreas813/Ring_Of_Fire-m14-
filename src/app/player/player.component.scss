@@ -2,10 +2,11 @@
     width: 256+128px;
     display: flex;
     align-items: center;
-    background-color: darkorange;
+    background-color: dimgray;
     padding: 8px;
     border-top-left-radius: 56px;
     border-bottom-left-radius: 56px;
+
 
     span {
         font-size: 32px;
@@ -14,10 +15,16 @@
 
     }
 
+
     img {
-        width: 96px;
-        height: 96px;
+        width: 48px;
+        height: 48px;
         border-radius: 100%;
         filter: sepia(0.75);
     }
+}
+
+
+.player-active {
+    background-color: darkorange !important;
 }

@@ -8,22 +8,20 @@ import {
     MatDialogModule,
 } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { GameInstructionsComponent } from '../game-instructions/game-instructions.component';
 
 
 @Component({
     selector: 'app-game',
-    imports: [PlayerComponent, MatButtonModule, MatIconModule, MatDialogModule],
+    imports: [PlayerComponent, MatButtonModule, MatIconModule, MatDialogModule, GameInstructionsComponent],
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss'
 })
 export class GameComponent implements OnInit {
     pickCardAnimation = false;
     currentCard: string | undefined;
-    // game: Game;
     game: Game | undefined;
 
-    readonly animal = signal('');
-    readonly name = model('');
     readonly dialog = inject(MatDialog);
 
     constructor() { }
@@ -57,8 +55,8 @@ export class GameComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+        dialogRef.afterClosed().subscribe(name => {
+            this.game?.players.push(name);
         });
     }
 }
