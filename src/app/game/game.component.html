@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<app-game-instructions class="pin-bottom" />
+<app-game-instructions [card]="currentCard" class="pin-bottom" />
 
 <button mat-fab (click)="openDialog()" class="btn-add">
     <mat-icon>add</mat-icon>

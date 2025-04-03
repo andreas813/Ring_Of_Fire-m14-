@@ -1,6 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
     MatDialogModule,
+    MAT_DIALOG_DATA,
+    MatDialog,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogRef,
+    MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +26,9 @@ import { MatButtonModule } from '@angular/material/button';
 export class DialogAddPlayerComponent {
     name: string = '';
 
-    onNoClick() {
+    readonly dialogRef = inject(MatDialogRef<DialogAddPlayerComponent>);
 
+    onNoClick() {
+        this.dialogRef.close();
     }
 }
