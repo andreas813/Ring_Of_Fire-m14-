@@ -1,23 +1,23 @@
 @if (game) {
 @for (player of game.players; track $index; let i = $index) {
-<app-player [style.transform]="'translateY(' + (64 + (80 * i)) + 'px)'" [playerActive]="game.currentPlayer == i" [name]="player" class="player-position" />
-}
-}
+<app-player [style.transform]="'translateY(' + (64 + (80 * i)) + 'px)'" [playerActive]="game.currentPlayer == i" [name]="player" class="player-position">
+    }
+    }
 
-<div class="gamezone">
-    <div class="card-stack">
-        @for (c of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]; track $index; let i = $index) {
-        <img [style.transform]="'translateX(' + (i * 1) + 'px) translateY(' + (i * -2) + 'px)'" src="../../assets/img/card/card_cover_fire.png" alt="Card cover">
-        }
-        <img (click)="takeCard()" class="top-card" style="translate: 15px -30px;" src="../../assets/img/card/card_cover_fire.png" alt="Card cover">
-        @if (pickCardAnimation) {
-        <img (click)="takeCard()" class="pick-card-animation" [class.pick-card]="pickCardAnimation" style="translate: 15px -30px;" src="../../assets/img/{{ currentCard }}.png" alt="Card cover">
-        }
+    <div class="gamezone">
+        <div class="card-stack">
+            @for (c of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]; track $index; let i = $index) {
+            <img [style.transform]="'translateX(' + (i * 1) + 'px) translateY(' + (i * -2) + 'px)'" src="../../assets/img/card/card_cover_fire.png" alt="Card cover">
+            }
+            <img (click)="takeCard()" class="top-card" style="translate: 15px -30px;" src="../../assets/img/card/card_cover_fire.png" alt="Card cover">
+            @if (pickCardAnimation) {
+            <img (click)="takeCard()" class="pick-card-animation" [class.pick-card]="pickCardAnimation" style="translate: 15px -30px;" src="../../assets/img/{{ currentCard }}.png" alt="Card cover">
+            }
+        </div>
     </div>
-</div>
 
-<app-game-instructions [card]="currentCard" class="pin-bottom" />
+    <app-game-instructions [card]="currentCard" class="pin-bottom" />
 
-<button mat-fab (click)="openDialog()" class="btn-add">
-    <mat-icon>add</mat-icon>
-</button>
+    <button mat-fab (click)="openDialog()" class="btn-add">
+        <mat-icon>add</mat-icon>
+    </button>

@@ -9,11 +9,13 @@ import {
 } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInstructionsComponent } from '../game-instructions/game-instructions.component';
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 
 
 @Component({
     selector: 'app-game',
-    imports: [PlayerComponent, MatButtonModule, MatIconModule, MatDialogModule, GameInstructionsComponent],
+    standalone: true,
+    imports: [MatButtonModule, MatIconModule, MatDialogModule,],
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss'
 })
@@ -22,13 +24,12 @@ export class GameComponent implements OnInit {
     currentCard: string | undefined;
     game: Game | undefined;
 
-    readonly dialog = inject(MatDialog);
 
-    constructor() { }
+    constructor(private firestore: Firestore, public dialog: MatDialog) { }
+
 
     ngOnInit(): void {
         this.newGame();
-        console.log(this.game);
     }
 
 
