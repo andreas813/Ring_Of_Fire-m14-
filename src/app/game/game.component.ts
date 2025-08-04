@@ -1,21 +1,19 @@
+// import { injectFirestore } from '@angular/fire/firestore';
 import { Component, OnInit, inject, model, signal } from '@angular/core';
 import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {
-    MatDialog,
-    MatDialogModule,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInstructionsComponent } from '../game-instructions/game-instructions.component';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, doc, DocumentData, onSnapshot, addDoc, updateDoc, deleteDoc, query, orderBy, limit, where } from '@angular/fire/firestore';
 
 
 @Component({
     selector: 'app-game',
     standalone: true,
-    imports: [MatButtonModule, MatIconModule, MatDialogModule,],
+    imports: [MatButtonModule, MatIconModule, MatDialogModule, PlayerComponent, GameInstructionsComponent],
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss'
 })
