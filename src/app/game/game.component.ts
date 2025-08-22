@@ -8,26 +8,39 @@ import { MatDialog, MatDialogModule, } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInstructionsComponent } from '../game-instructions/game-instructions.component';
 import { Firestore, collectionData, collection, doc, DocumentData, onSnapshot, addDoc, updateDoc, deleteDoc, query, orderBy, limit, where } from '@angular/fire/firestore';
+import { Observable, Subscription } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 
 @Component({
     selector: 'app-game',
     standalone: true,
-    imports: [MatButtonModule, MatIconModule, MatDialogModule, PlayerComponent, GameInstructionsComponent],
+    imports: [MatButtonModule, MatIconModule, MatDialogModule, PlayerComponent, GameInstructionsComponent, AsyncPipe],
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss'
 })
 export class GameComponent implements OnInit {
     pickCardAnimation = false;
-    currentCard: string | undefined;
-    game: Game | undefined;
+    currentCard?: string;
+    game?: Game;
+    firestore: Firestore = inject(Firestore);
+    games$: Observable<any[]>;
+    private gamesSub?: Subscription;
 
 
-    constructor(private firestore: Firestore, public dialog: MatDialog) { }
+
+    constructor(public dialog: MatDialog) {
+        const gamesCollection = collection(this.firestore, 'games')
+        this.games$ = collectionData(gamesCollection, { idField: 'id' }) as Observable<Game[]>;
+    }
 
 
     ngOnInit(): void {
         this.newGame();
+        // subscribe to log changes (real-time)
+        this.gamesSub = this.games$.subscribe(games => {
+            console.log('Game update', games);
+        });
     }
 
 
